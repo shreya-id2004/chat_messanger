@@ -1,18 +1,9 @@
 const express = require("express");
 const app = express();
-const path=require("path");
-const mehtodOverride = require("method-override");
-const bodyParser = require('body-parser');
 
 const server = require('http').createServer(app); 
 const io = require('socket.io')(server);
 
-app.use(mehtodOverride("_method"));
-app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"views"));
-app.use(express.static(path.join(__dirname,"public"))); 
-app.use(express.urlencoded({extended :true}));
-app.use(bodyParser.urlencoded({ extended: true }));
 
 let users={}; //define the user object;
 
