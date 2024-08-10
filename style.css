@@ -1,0 +1,87 @@
+.logo{
+    display:block;
+    margin:auto;
+    width:50px;
+    height:50px;
+    margin-bottom: 40px;
+}
+
+body{
+    height: 100vh;
+    background-image:linear-gradient(rgb(255,255,255),#06f5f9);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container{
+    width: 50vh;
+    margin:auto;
+    height:60vh;
+    padding:33px 50px;
+    overflow-y:auto;
+    margin-bottom: 23px;
+    padding: 33px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.msg{
+    width: 150px;
+    padding:10px;
+    margin:17px 12px;
+    border:2px solid black;
+    border-radius: 10px;
+    margin: 17px 20px;
+}
+.left{
+    float:left;
+    clear:both;
+    background-color: #fffbfb;
+}
+.right{
+    float:right;
+    clear:both;
+    background-color: #07c918
+}
+.send{
+    display:inline-block;
+    width: 50vh;
+    margin:auto;
+    text-align: center;
+    border-radius: 10px;
+
+}
+#msgInput{
+    width: 16rem;
+    border:2px solid black;
+    height: 20px;
+    padding: 10px;
+    margin:center;
+    border-radius: 10px;
+    border: 2px solid #ccc; 
+    font-size: 16px;
+    font-size: 16px;
+}
+#msgInput:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f2f2f2;
+  }
+.btn{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #4CAF50; /* a green background */
+    color: #fff;
+    
+}
+.btn:hover {
+    background-color: #3e8e41; 
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
