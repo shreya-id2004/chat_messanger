@@ -1,0 +1,17 @@
+{
+  "name": "chat_messanger",
+  "version": "1.0.0",
+  "description": "![Screenshot 2024-08-10 153550](https://github.com/user-attachments/assets/396809be-e180-4e3f-9c0f-80d4ec4678b2)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}

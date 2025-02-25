@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat app</title>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <nav>
+        <img class="logo" src="/logo.png">
+    </nav>
+
+    <div class="wrapper">
+
+        <div class="container">
+        </div>
+
+        <div id="typing-indicator">
+            <span></span>
+        </div>
+    
+        <div class="send">
+            <form  id="send_container" >
+                <input type="text" name="msgInput" id="msgInput">
+                <button class="btn" type="submit">Send</button>
+            </form>
+        </div>
+
+    </div>
+    
+    <script defer src="/app.js"></script>
+</body>
+</html>
