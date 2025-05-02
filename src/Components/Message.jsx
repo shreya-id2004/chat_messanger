@@ -1,8 +1,7 @@
 import React from 'react';
-// Message.jsx
-import { Box } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 
-function Message({ text, position }) {
+function Message({ text, position, file}) {
   return (
     <Box
       sx={{
@@ -22,7 +21,30 @@ function Message({ text, position }) {
           wordWrap: 'break-word',
         }}
       >
-        {text}
+
+        {text && <Typography>{text}</Typography>}
+        {file && (
+          <Box sx={{ mt: 1 }}>
+            {file.fileType.startsWith('image/') ? (
+              <img
+                src={`http://localhost:8080${file.fileUrl}`}
+                alt="Shared file"
+                style={{ maxWidth: '200px', borderRadius: '8px' }}
+                onError={(e) => console.error('Image load error:', file.fileUrl)}
+              />
+            ) : (
+              <a
+                href={`http://localhost:8080${file.fileUrl}`}
+                download={file.fileUrl.split('/').pop()} // Use original filename
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: position === 'right' ? '#fff' : '#1976d2', textDecoration: 'underline' }}
+              >
+                Download {file.fileUrl.split('/').pop()}
+              </a>
+            )}
+          </Box>
+        )}
       </Box>
     </Box>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import MessageForm from './MessageForm';
@@ -14,8 +14,8 @@ function ChatContainer({ socket }) {
   const msgContainerRef = useRef(null);
   const typingTimeout = useRef(null);
 
-  const appendMessage = (message, position) => {
-    setMessages((prev) => [...prev, { text: message, position }]);
+  const appendMessage = (message, position, messageId, file) => {
+    setMessages((prev) => [...prev, { text: message, position, messageId, reactions: [], file }]);
   };
 
   useEffect(() => {
@@ -49,8 +49,9 @@ function ChatContainer({ socket }) {
     });
 
     socket.on('receive', (data) => {
-      console.log("The reviced message is" , data.message);
-      appendMessage(`${data.name}: ${data.message}`, 'left');
+      console.log("The reviced message is" , data.message,data.file);
+      const position = data.id === socket.id ? 'right' : 'left';
+      appendMessage(`${data.name}: ${data.message || ''}`, position, data.messageId, data.file);
     });
 
     socket.on('user-left', (name) => {
@@ -92,10 +93,10 @@ function ChatContainer({ socket }) {
   }, [messages]);
 
   
-  const handleSendMessage = (message) => {
-    console.log('Sending message:', message);
-    appendMessage(`You: ${message}`, 'right');
-    socket.emit('send',({ message , roomId}));
+  const handleSendMessage = (message ,file) => {
+    console.log('Sending message:', message , 'File:',file);
+    // appendMessage(`You: ${message}`, 'right' ,`${socket.id}-${Date.now()}`,file);
+    socket.emit('send',({ message , roomId,file}));
     socket.emit('stop-typing', roomId);
   };
 
@@ -123,7 +124,11 @@ function ChatContainer({ socket }) {
         }}
       >
         {messages.map((msg, index) => (
-          <Message key={index} text={msg.text} position={msg.position} />
+          <Message 
+            key={index} 
+            text={msg.text} 
+            position={msg.position} 
+            file={msg.file}/>
         ))}
       </Box>
       <TypingIndicator typingUser={typingUser} />
